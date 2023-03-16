@@ -1,10 +1,12 @@
 ## router-dom 연결 → npm i react-router-dom
-## mui 라이브러리 → 사이트에서 보고 import
+## mui 라이브러리 → 사이트에 쓸 거 골라서 import
 ## zustand → npm install zustand
 
 ## node -v → v18.13.0 / node version
 
 ## npx react-create-app board --template typescript
+
+## rfc 메서드 완성 기능 → ES7 + React/Redux/.. 확장 
 
 # Getting Started with Create React App
 
