@@ -3,6 +3,7 @@ import logo from './logo.svg';
 import './App.css';
 import { useLocation } from 'react-router-dom';
 import { Route, Routes } from 'react-router';
+import NavigationBar from './views/NavigationBar';
 
 //# Router 통신 설계
 //? 1. main path : '/'
@@ -19,8 +20,7 @@ function App() {
 
   return (
     <> {/* //? 최상단 태그는 하나 */}
-    확인용
-    <></> {/* //? 나중에 컴포넌트 만들어 줌 */}
+    <NavigationBar/> {/* //? 나중에 컴포넌트 만들어 줌 */}
     <Routes>
       {/* /auth처럼 단일 페이지로 사용되는 url 형태일 때 */}
       <Route path = '/' element = {<></>}/> {/* //? 메인화면 */}
