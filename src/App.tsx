@@ -4,6 +4,8 @@ import './App.css';
 import { useLocation } from 'react-router-dom';
 import { Route, Routes } from 'react-router';
 import NavigationBar from './views/NavigationBar';
+import Main from './views/Main';
+import AuthenticationView from './views/AuthenticationView';
 
 //# Router 통신 설계
 //? 1. main path : '/'
@@ -23,8 +25,8 @@ function App() {
     <NavigationBar/> {/* //? 나중에 컴포넌트 만들어 줌 */}
     <Routes>
       {/* /auth처럼 단일 페이지로 사용되는 url 형태일 때 */}
-      <Route path = '/' element = {<></>}/> {/* //? 메인화면 */}
-      <Route path = '/auth' element = {(<></>)}/> {/* //? 로그인, 회원가입*/}
+      <Route path = '/' element = {(<Main/>)}/> {/* //? 메인화면 */}
+      <Route path = '/auth' element = {(<AuthenticationView/>)}/> {/* //? 로그인, 회원가입*/}
       <Route path = '/myPage' element = {(<></>)}/> {/* //? 마이 페이지 */}
       <Route path = '/board'> {/* //? /board/추가적으로 url이 붙는 페이지 형태 */}
          <Route path = 'write' element = {(<></>)}/> {/* //? 글쓰기 */}
