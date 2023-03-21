@@ -6,6 +6,11 @@ import { Route, Routes } from 'react-router';
 import NavigationBar from './views/NavigationBar';
 import Main from './views/Main';
 import AuthenticationView from './views/AuthenticationView';
+import MyPageView from './views/MyPageView';
+import BoardWriteView from './views/Board/BoardWriteView';
+import BoardDetailView from './views/Board/BoardDetailView';
+import BoardUpdateView from './views/Board/BoardUpdateView';
+import SearchView from './views/SearchView';
 
 //# Router 통신 설계
 //? 1. main path : '/'
@@ -27,12 +32,12 @@ function App() {
       {/* /auth처럼 단일 페이지로 사용되는 url 형태일 때 */}
       <Route path = '/' element = {(<Main/>)}/> {/* //? 메인화면 */}
       <Route path = '/auth' element = {(<AuthenticationView/>)}/> {/* //? 로그인, 회원가입*/}
-      <Route path = '/myPage' element = {(<></>)}/> {/* //? 마이 페이지 */}
+      <Route path = '/myPage' element = {(<MyPageView/>)}/> {/* //? 마이 페이지 */}
       <Route path = '/board'> {/* //? /board/추가적으로 url이 붙는 페이지 형태 */}
-         <Route path = 'write' element = {(<></>)}/> {/* //? 글쓰기 */}
-         <Route path = 'search/:content' element = {(<></>)}/> {/* //? 검색 화면 */}
-         <Route path = 'detail/:boardNumber' element = {(<></>)}/> {/* //? 글 세부내용 */}
-         <Route path = 'update/:boardNumber' element = {(<></>)}/> {/* //? 글 수정 */}
+         <Route path = 'write' element = {(<BoardWriteView/>)}/> {/* //? 글쓰기 */}
+         <Route path = 'search/:content' element = {(<SearchView/>)}/> {/* //? 검색 화면 */}
+         <Route path = 'detail/:boardNumber' element = {(<BoardDetailView/>)}/> {/* //? 글 세부내용 */}
+         <Route path = 'update/:boardNumber' element = {(<BoardUpdateView/>)}/> {/* //? 글 수정 */}
       </Route>
     </Routes>
     {path.pathname !== '/auth' && (<></>)} { /* 로그인 페이지 외 모든 화면에서 보여줄 컴포넌트*/}
