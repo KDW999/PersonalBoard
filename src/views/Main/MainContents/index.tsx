@@ -7,6 +7,7 @@ import React, { useEffect } from 'react'
 import BoardListItem from 'src/components/BoardListItem'
 import PopularCard from 'src/components/PopularCard'
 import { usePagingHook } from 'src/hooks'
+import { IPreviewItem } from 'src/interfaces'
 import { BOARD_LIST } from 'src/mock'
 import { getPageCount } from 'src/utils'
 
@@ -20,7 +21,7 @@ export default function MainContents() {
    }, [])
 
   return (
-    <Box sx = {{ p : '40px 120px', backgroundColor : 'rgba(300, 100, 50, 0.5)'}}>
+    <Box sx = {{ p : '40px 120px', backgroundColor : '#00ffff'}}>
         <Box>
            <Typography sx = {{ fontSize : '24px', fontWeight : '400'}}> 최근 작성글 </Typography>
         </Box>
@@ -29,7 +30,7 @@ export default function MainContents() {
           <Grid container spacing = {3}>
             <Grid item sm = {12} md = {8}>
               <Stack spacing = {2}>
-                {/* {viewList.map((boardItem) => (<BoardListItem item = {boardItem as IPreviewItem}/>))} */}
+                {viewList.map((boardItem) => (<BoardListItem item = {boardItem as IPreviewItem}/>))} 
               </Stack>    
             </Grid>
             <Grid item sm = {12} md = {4}>
