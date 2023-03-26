@@ -4,4 +4,4 @@
 import useSignUpStore from './sign-up.store';
 import useUserStore from './user.store';
 
-export { useSignUpStore, useUserStore}; // 파일 단위임을 인식시키기 위해 중괄호
+export { useSignUpStore, useUserStore }; // 파일 단위임을 인식시키기 위해 중괄호

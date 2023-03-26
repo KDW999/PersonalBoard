@@ -333,16 +333,6 @@ export const BOARD_LIST : IPreviewItem[] = [
     }
 ];
 
-// 유저 정보
-export const USER : IUser = {
-     email : 'kakao@naver.com',
-     password : 'hello123',
-     nickname : 'KDW',
-     telNumber : '010-4456-7532',
-     address : '부산광역시 부산진구',
-     addressDetail : '롯데백화점'
-};
-
 // 좋아요 누른 사람 프로필
 export const LIKE_LIST : ILikeUser[] = [
      {
@@ -437,3 +427,13 @@ export const COMMENT_LIST : ICommentItem[] = [
         commentDatetime : '2023-03-21 00:42'
     }
 ]
+
+// 유저 정보
+export const USER : IUser = {
+    email : 'kdw@123',
+    password : 'hi123',
+    nickname : 'KDW',
+    telNumber : '010-4456-7532',
+    address : '부산광역시 부산진구',
+    addressDetail : '롯데백화점'
+};

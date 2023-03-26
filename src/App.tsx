@@ -30,14 +30,14 @@ function App() {
     <NavigationBar/> {/* //? 나중에 컴포넌트 만들어 줌 */}
     <Routes>
       {/* /auth처럼 단일 페이지로 사용되는 url 형태일 때 */}
-      <Route path = '/' element = {(<Main/>)}/> {/* //? 메인화면 */}
-      <Route path = '/auth' element = {(<AuthenticationView/>)}/> {/* //? 로그인, 회원가입*/}
-      <Route path = '/myPage' element = {(<MyPageView/>)}/> {/* //? 마이 페이지 */}
-      <Route path = '/board'> {/* //? /board/추가적으로 url이 붙는 페이지 형태 */}
-         <Route path = 'write' element = {(<BoardWriteView/>)}/> {/* //? 글쓰기 */}
-         <Route path = 'search/:content' element = {(<SearchView/>)}/> {/* //? 검색 화면 */}
-         <Route path = 'detail/:boardNumber' element = {(<BoardDetailView/>)}/> {/* //? 글 세부내용 */}
-         <Route path = 'update/:boardNumber' element = {(<BoardUpdateView/>)}/> {/* //? 글 수정 */}
+      <Route path = '/' element = {(<Main/>)}/> {/* //? 메인화면 O*/}
+      <Route path = '/auth' element = {(<AuthenticationView/>)}/> {/* //? 로그인, 회원가입 X*/}
+      <Route path = '/myPage' element = {(<MyPageView/>)}/> {/* //? 마이 페이지 X */}
+      <Route path = '/board'> {/* //? /board/추가적으로 url이 붙는 페이지 형태 X */}
+         <Route path = 'write' element = {(<BoardWriteView/>)}/> {/* //? 글쓰기 X */}
+         <Route path = 'search/:content' element = {(<SearchView/>)}/> {/* //? 검색 화면 X */}
+         <Route path = 'detail/:boardNumber' element = {(<BoardDetailView/>)}/> {/* //? 글 세부내용 X */}
+         <Route path = 'update/:boardNumber' element = {(<BoardUpdateView/>)}/> {/* //? 글 수정 X */}
       </Route>
     </Routes>
     {path.pathname !== '/auth' && (<></>)} { /* 로그인 페이지 외 모든 화면에서 보여줄 컴포넌트*/}
