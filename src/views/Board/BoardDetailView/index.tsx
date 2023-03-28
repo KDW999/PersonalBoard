@@ -1,9 +1,9 @@
-import { Avatar, Divider, IconButton, Typography, Menu, MenuItem, Card } from '@mui/material';
+import { Avatar, Divider, IconButton, Typography, Menu, MenuItem, Card, Stack, Pagination, Input, Button } from '@mui/material';
 import Box from '@mui/material/Box'
 import React, { MouseEvent, useEffect, useState} from 'react'
 import { useNavigate, useParams } from 'react-router-dom';
 import { usePagingHook } from 'src/hooks';
-import { ILikeUser, IPreviewItem } from 'src/interfaces';
+import { ICommentItem, ILikeUser, IPreviewItem } from 'src/interfaces';
 import { BOARD_LIST, COMMENT_LIST, LIKE_LIST } from 'src/mock';
 import { useUserStore } from 'src/stores';
 import DragIndicatorIcon from '@mui/icons-material/DragIndicator';
@@ -12,6 +12,8 @@ import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
 import { CommentOutlined, KeyboardArrowDownOutlined } from '@mui/icons-material';
 import { KeyboardArrowUpOutlined }from '@mui/icons-material';
 import LikeListItem from 'src/components/LikeListItem';
+import CommentListItem from 'src/components/CommentListItem';
+import { getPageCount } from 'src/utils';
 
 export default function BoardDetailView() {
 
@@ -136,11 +138,26 @@ export default function BoardDetailView() {
 
             <Box>
 
-              <Box>
-                <Typography>댓글 {boardList.length}</Typography>
+              <Box sx = {{ p : '20px', mb : '30px'}}>
+                <Typography sx = {{ fontSize : '16px', fontWeight : 500}}>댓글 {boardList.length}</Typography>
+                <Stack sx = {{ p : '20px 0px'}} spacing = {3.75}>
+                  {viewList.map((commentItem) => (<CommentListItem item = {commentItem as ICommentItem}/>))}
+                </Stack>
               </Box>
 
+              <Divider/>
+              <Box sx = {{ p : '20px 0px', display : 'flex', justifyContent : 'center'}}>
+                <Pagination page = {pageNumber} count = {getPageCount(boardList, COUNT)} onChange = {(event, value) => onPageHandler(value)}/>
+              </Box>
 
+              <Box>
+                <Card variant = 'outlined' sx = {{ p : '20px'}}>
+                  <Input minRows = {3} multiline disableUnderline fullWidth/>
+                  <Box sx = {{ display : 'flex', justifyContent : 'end'}}>
+                    <Button sx = {{ p : '4px 23px', backgroundColor : '#000000', fontSize : '14px', color : '#ffffff', borderRadius : '45px'}}>댓글 달기</Button>
+                  </Box>
+                </Card>
+              </Box>
             </Box>
           )
 
