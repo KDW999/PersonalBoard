@@ -31,8 +31,8 @@ function App() {
     <Routes>
       {/* /auth처럼 단일 페이지로 사용되는 url 형태일 때 */}
       <Route path = '/' element = {(<Main/>)}/> {/* //? 메인화면 O*/}
-      <Route path = '/auth' element = {(<AuthenticationView/>)}/> {/* //? 로그인, 회원가입 X*/}
-      <Route path = '/myPage' element = {(<MyPageView/>)}/> {/* //? 마이 페이지 X */}
+      <Route path = '/auth' element = {(<AuthenticationView/>)}/> {/* //? 로그인, 회원가입 O */}
+      <Route path = '/myPage' element = {(<MyPageView/>)}/> {/* //? 마이 페이지 O */}
       <Route path = '/board'> {/* //? /board/추가적으로 url이 붙는 페이지 형태 X */}
          <Route path = 'write' element = {(<BoardWriteView/>)}/> {/* //? 글쓰기 X */}
          <Route path = 'search/:content' element = {(<SearchView/>)}/> {/* //? 검색 화면 X */}

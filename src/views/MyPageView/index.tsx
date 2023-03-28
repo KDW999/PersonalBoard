@@ -1,8 +1,13 @@
 import { Box } from '@mui/material'
 import React from 'react'
+import MyPageContents from './MyPageContents'
+import MyPageHead from './MyPageHead'
 
 export default function MyPageView() {
   return (
-    <Box>여긴 마이페이지</Box>
+    <Box>
+      <MyPageHead/>
+      <MyPageContents/>
+    </Box>
   )
 }
