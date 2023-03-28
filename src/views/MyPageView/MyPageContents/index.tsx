@@ -35,7 +35,8 @@ export default function MyPageContents() {
     //? BOARD_LIST (전체 게시물 리스트)에서 작성자의 nickname이 
     //? 로그인한 회원의 nickname과 일치하는 게시물만 필터링
     const tmp = BOARD_LIST.filter((board) => board.writerNickname === user?.nickname)
-
+    
+    //? tmp에는 BOARD_LIST에 있는 조건에 부합하는 writerNickname이 순차적으로 담긴다. 
     setBoardList(tmp);
     
    }, [])

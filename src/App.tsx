@@ -11,6 +11,7 @@ import BoardWriteView from './views/Board/BoardWriteView';
 import BoardDetailView from './views/Board/BoardDetailView';
 import BoardUpdateView from './views/Board/BoardUpdateView';
 import SearchView from './views/SearchView';
+import Board from './views/Board';
 
 //# Router 통신 설계
 //? 1. main path : '/'
@@ -33,7 +34,7 @@ function App() {
       <Route path = '/' element = {(<Main/>)}/> {/* //? 메인화면 O*/}
       <Route path = '/auth' element = {(<AuthenticationView/>)}/> {/* //? 로그인, 회원가입 O */}
       <Route path = '/myPage' element = {(<MyPageView/>)}/> {/* //? 마이 페이지 O */}
-      <Route path = '/board'> {/* //? /board/추가적으로 url이 붙는 페이지 형태 X */}
+      <Route path = '/board'>  {/* //? /board/추가적으로 url이 붙는 페이지 형태, 여기에 element 쓰면 자식 컴포넌트 안불러와짐? */}
          <Route path = 'write' element = {(<BoardWriteView/>)}/> {/* //? 글쓰기 X */}
          <Route path = 'search/:content' element = {(<SearchView/>)}/> {/* //? 검색 화면 X */}
          <Route path = 'detail/:boardNumber' element = {(<BoardDetailView/>)}/> {/* //? 글 세부내용 X */}
