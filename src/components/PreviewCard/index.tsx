@@ -15,7 +15,7 @@ export default function PreviewCard( {previewItem} : Props) {
 
   return (
     <Card>
-      <CardActionArea sx = {{ height : '500px', backgroundImage : backgroundImage, backgroundSize : 'cover'}} onClick = {() => navigator(`/board/detial/${previewItem.boardNumber}`)}>
+      <CardActionArea sx = {{ height : '500px', backgroundImage : backgroundImage, backgroundSize : 'cover'}} onClick = {() => navigator(`/board/detail/${previewItem.boardNumber}`)}>
         <Box sx = {{ height : '100%', display : 'flex', flexDirection : 'column-reverse'}}>
           <Box sx = {{ p: '24px'}}>
             <Box sx = {{ display : 'flex'}}>

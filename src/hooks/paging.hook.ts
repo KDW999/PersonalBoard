@@ -28,7 +28,7 @@ const usePagingHook = (COUNT : number) => {
         onPageHandler(pageNumber);
     }, [boardList]);
 
-   return { COUNT, boardList, viewList, pageNumber, onPageHandler, setBoardList}; // 중괄호로 반환 시 객체로 받기에 정한 이름으로만 사용
+   return { COUNT, boardList, viewList, pageNumber, onPageHandler, setBoardList}; // 중괄호로 반환 시 객체로 받기로 정한 이름으로만 사용
 }  // 대괄호는 이름 바꿔서 사용 가능
 
 export default usePagingHook;

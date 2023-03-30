@@ -36,7 +36,7 @@ function App() {
       <Route path = '/auth' element = {(<AuthenticationView/>)}/> {/* //? 로그인, 회원가입 O */}
       <Route path = '/myPage' element = {(<MyPageView/>)}/> {/* //? 마이 페이지 O */}
       <Route path = '/board'>  {/* //? /board/추가적으로 url이 붙는 페이지 형태, 여기에 element 쓰면 자식 컴포넌트 안불러와짐? */}
-         <Route path = 'write' element = {(<BoardWriteView/>)}/> {/* //? 글쓰기 X */}
+         <Route path = 'write' element = {(<BoardWriteView/>)}/> {/* //? 글쓰기 O */}
          <Route path = 'search/:content' element = {(<SearchView/>)}/> {/* //? 검색 화면 X */}
          <Route path = 'detail/:boardNumber' element = {(<BoardDetailView/>)}/> {/* //? 글 세부내용 O */}
          <Route path = 'update/:boardNumber' element = {(<BoardUpdateView/>)}/> {/* //? 글 수정 O */}

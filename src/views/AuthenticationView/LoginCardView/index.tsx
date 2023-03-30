@@ -43,7 +43,10 @@ export default function LoginCardView({setLoginView} : Props) {
     //? 로그인 처리
     //? 쿠키에 로그인 데이터 (Token) 보관
     //? 스토어 유저 데이터 보관
-    setUser(USER);
+
+    setUser(USER); //? 여기서 user store에 있는 setUser를 호출하였고 인자는 mock 데이터의 USER를 주었음, 
+                   //? 이렇게 state를 관리하는 store에 매개변수(여기선 mock에 있는 데이터들)를 주어서 한 번 저장해주면 
+                   //? 다른 파일에서 계속 사용 가능..? 
     navigator('/');
   }
 
