@@ -8,6 +8,8 @@
 
 ## rfc 메서드 완성 기능 → ES7 + React/Redux/.. 확장 
 
+## spring → 생성 시 version 맞추고, lombok, spring web 탑재
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
