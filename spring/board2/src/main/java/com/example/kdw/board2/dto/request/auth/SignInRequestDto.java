@@ -11,8 +11,8 @@ import org.hibernate.validator.constraints.Length;
 @Data
 @NoArgsConstructor
 public class SignInRequestDto {
-    
-    //? 로그인 시 필요한 건 이메일과 패스워드!
+    //? 로그인 요청
+    //? 로그인 시 필요한 데이터 종류에 따라 길이나 email 같은 형태로 지정해줄 건 따로 지정해주는 곳
 
     @NotBlank
     @Email
