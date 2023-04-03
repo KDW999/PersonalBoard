@@ -37,6 +37,6 @@ public class UserEntity {
         this.password = dto.getPassword();
         this.nickname = dto.getNickname();
         this.telNumber = dto.getTelNumber();
-        this.address = dto.getAdderss();
+        this.address = dto.getAddress();
     }
 }

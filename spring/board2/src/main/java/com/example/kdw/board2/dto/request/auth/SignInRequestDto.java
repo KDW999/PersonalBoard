@@ -20,7 +20,7 @@ public class SignInRequestDto {
     private String email;
     
     @NotBlank
-    @Length(min = 8, max = 20)
+    @Length(min = 4, max = 20)
     private String password;
 
 }

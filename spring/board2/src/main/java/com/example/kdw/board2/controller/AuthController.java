@@ -18,11 +18,11 @@ import com.example.kdw.board2.service.AuthService;
 
 @RestController
 @RequestMapping(ApiPattern.AUTH)
-public class AuthConroller {
+public class AuthController {
     
     @Autowired private AuthService authService;
 
-    private final String SIGN_UP = "/sign_up";
+    private final String SIGN_UP = "/sign-up";
     private final String SIGN_IN = "/sign-in";
 
     @PostMapping(SIGN_UP) //? crud의 c, 로그인과 회원가입에 관한 데이터는 숨겨주기

@@ -7,8 +7,10 @@ import com.example.kdw.board2.entity.UserEntity;
 @Repository
 public interface UserRepository extends JpaRepository<UserEntity, String>{
     
+    public UserEntity findByEmail(String email);
+    
     public boolean existsByEmail(String email);
     public boolean existsByTelNumber(String telNumber);
     
-    public UserEntity findByEmail(String email);
+    
 }

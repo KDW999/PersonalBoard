@@ -12,7 +12,7 @@ import com.example.kdw.board2.dto.response.ResponseDto;
 import com.example.kdw.board2.dto.response.auth.SignInResponseDto;
 import com.example.kdw.board2.dto.response.auth.SignUpResponseDto;
 import com.example.kdw.board2.entity.UserEntity;
-// import com.example.kdw.board2.provider.TokenProvider;
+import com.example.kdw.board2.provider.TokenProvider;
 import com.example.kdw.board2.repository.UserRepository;
 import com.example.kdw.board2.service.AuthService;
 
@@ -20,10 +20,9 @@ import com.example.kdw.board2.service.AuthService;
 public class AuthServiceImplements implements AuthService {
     
     @Autowired private UserRepository userRepository;
-    // @Autowired private TokenProvider tokenProvider;
+    @Autowired private TokenProvider tokenProvider;
 
     private PasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
-
 
     public ResponseDto<SignUpResponseDto> signUp(SignUpRequestDto dto){
 
@@ -40,6 +39,10 @@ public class AuthServiceImplements implements AuthService {
 
             boolean hasTelNumber = userRepository.existsByTelNumber(telNumber);
             if(hasTelNumber) return ResponseDto.setFailed(ResponseMessage.EXIST_TEL_NUMBER);
+
+            //? 패스워드 암호화
+            String encodedPassword = passwordEncoder.encode(password);
+            dto.setPassword(encodedPassword);
 
             UserEntity userEntity = new UserEntity(dto);
             userRepository.save(userEntity);
@@ -69,14 +72,25 @@ public class AuthServiceImplements implements AuthService {
             userEntity = userRepository.findByEmail(email);
             if(userEntity == null) return ResponseDto.setFailed(ResponseMessage.FAIL_SIGN_IN);
 
-            boolean isEqualPassword = passwordEncoder.matches(password, userEntity.getPassword());
-            if(isEqualPassword) return ResponseDto.setFailed(ResponseMessage.FAIL_SIGN_IN);
+           //? 비밀번호 검증
+           boolean isEqualPassword = passwordEncoder.matches(password, userEntity.getPassword());
+           if(!isEqualPassword) return ResponseDto.setFailed(ResponseMessage.FAIL_SIGN_IN);
             
         } catch (Exception exception) {
             exception.printStackTrace();
             return ResponseDto.setFailed(ResponseMessage.DATABASE_ERROR);
         }
 
+        try {
+
+            String token = tokenProvider.create(email);
+
+            data = new SignInResponseDto(userEntity, token);
+            
+        } catch (Exception exception) {
+            exception.printStackTrace();
+            return ResponseDto.setFailed(ResponseMessage.FAIL_SIGN_IN);
+        }
         return ResponseDto.setSuccess(ResponseMessage.SUCCESS, data);
     }
 }

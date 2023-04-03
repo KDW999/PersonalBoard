@@ -1,5 +1,6 @@
 package com.example.kdw.board2.dto.request.auth;
 
+import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
 
 import org.hibernate.validator.constraints.Length;
@@ -14,11 +15,12 @@ public class SignUpRequestDto {
     //? 회원가입 시엔 이메일, 패스워드, 닉네임, 전화번호, 주소
 
     @NotBlank
+    @Email
     @Length(max = 40)
     private String email;
 
     @NotBlank
-    @Length(min = 4, max = 12)
+    @Length(min = 4, max = 20)
     private String password;
 
     @NotBlank
@@ -30,5 +32,5 @@ public class SignUpRequestDto {
     private String telNumber;
 
     @NotBlank
-    private String adderss;
+    private String address;
 }
