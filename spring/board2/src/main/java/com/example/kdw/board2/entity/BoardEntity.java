@@ -53,4 +53,14 @@ public class BoardEntity {
         this.commentCount = 0;
         this.likeCount = 0;
     }
+
+    public void increaseViewCount(){
+        this.viewCount++;
+    }
+    public void increaseCommentCount(){
+        this.commentCount++;
+    }
+    public void increaseLikeCount(){
+        this.likeCount++;
+    }
 }
