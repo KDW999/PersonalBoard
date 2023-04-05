@@ -2,13 +2,16 @@ package com.example.kdw.board2.service.implementation;
 
 import java.util.List;
 
+import org.apache.catalina.connector.Response;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.example.kdw.board2.common.constant.ResponseMessage;
+import com.example.kdw.board2.dto.request.board.LikeReqeustDto;
 import com.example.kdw.board2.dto.request.board.PostBoardRequestDto;
 import com.example.kdw.board2.dto.request.board.PostCommentRequestDto;
 import com.example.kdw.board2.dto.response.ResponseDto;
+import com.example.kdw.board2.dto.response.board.LikeResponseDto;
 import com.example.kdw.board2.dto.response.board.PostBoardResponseDto;
 import com.example.kdw.board2.dto.response.board.PostCommentResponseDto;
 import com.example.kdw.board2.entity.BoardEntity;
@@ -79,6 +82,46 @@ public class BoardServiceImplements implements BoardService{
             data = new PostCommentResponseDto(boardEntity, likyList, commentList);
 
             
+        } catch (Exception exception) {
+            exception.printStackTrace();
+            return ResponseDto.setFailed(ResponseMessage.DATABASE_ERROR);
+        }
+
+        return ResponseDto.setSuccess(ResponseMessage.SUCCESS, data);
+    }
+
+    //? 좋아요 누르기
+    public ResponseDto<LikeResponseDto> like(String email, LikeReqeustDto dto){
+
+        LikeResponseDto data = null;
+        int boardNumber = dto.getBoardNumber();
+
+        try {
+
+            UserEntity userEntity = userRepository.findByEmail(email);
+            if(userEntity == null) return ResponseDto.setFailed(ResponseMessage.NOT_EXIST_USER);
+            System.out.println(userEntity);
+
+            BoardEntity boardEntity = boardRepository.findByBoardNumber(boardNumber);
+            if(boardEntity == null) return ResponseDto.setFailed(ResponseMessage.NOT_EXIST_BOARD);
+
+            LikyEntity likyEntity = likyRepository.findByUserEmailAndBoardNumber(email, boardNumber);
+            if(likyEntity == null){
+                likyEntity = new LikyEntity(userEntity, boardNumber);
+                likyRepository.save(likyEntity);
+                boardEntity.increaseLikeCount();
+            }
+            else{
+                likyRepository.delete(likyEntity);
+            }
+
+            boardRepository.save(boardEntity);
+
+            List<CommentEntity> commentList = commentRepository.findByBoardNumberOrderByWriteDatetimeDesc(boardNumber);
+            List<LikyEntity> likyList = likyRepository.findByBoardNumber(boardNumber);
+
+            data = new LikeResponseDto(boardEntity, likyList, commentList);
+
         } catch (Exception exception) {
             exception.printStackTrace();
             return ResponseDto.setFailed(ResponseMessage.DATABASE_ERROR);

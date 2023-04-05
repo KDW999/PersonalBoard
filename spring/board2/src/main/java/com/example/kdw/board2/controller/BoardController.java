@@ -10,9 +10,11 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.example.kdw.board2.common.constant.ApiPattern;
+import com.example.kdw.board2.dto.request.board.LikeReqeustDto;
 import com.example.kdw.board2.dto.request.board.PostBoardRequestDto;
 import com.example.kdw.board2.dto.request.board.PostCommentRequestDto;
 import com.example.kdw.board2.dto.response.ResponseDto;
+import com.example.kdw.board2.dto.response.board.LikeResponseDto;
 import com.example.kdw.board2.dto.response.board.PostBoardResponseDto;
 import com.example.kdw.board2.dto.response.board.PostCommentResponseDto;
 import com.example.kdw.board2.service.BoardService;
@@ -38,6 +40,7 @@ public class BoardController {
 
     private final String POST_BOARD = "";
     private final String POST_COMMENT = "/comment";
+    private final String LIKE = "/like";
     
     //? 게시글 작성
     @PostMapping(POST_BOARD)
@@ -55,5 +58,12 @@ public class BoardController {
         return response;
     }
 
+    //? 좋아요 누르기
+    @PostMapping(LIKE)
+    public ResponseDto<LikeResponseDto> Like(@AuthenticationPrincipal String email,
+    @Valid @RequestBody LikeReqeustDto requestBody){
+        ResponseDto<LikeResponseDto> response = boardService.like(email, requestBody);
+        return response;
+    }
     
 }
