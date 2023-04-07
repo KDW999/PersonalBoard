@@ -9,6 +9,9 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
+import org.springframework.security.access.method.P;
+
+import com.example.kdw.board2.dto.request.board.PatchBoardRequestDto;
 import com.example.kdw.board2.dto.request.board.PostBoardRequestDto;
 
 import lombok.AllArgsConstructor;
@@ -52,6 +55,13 @@ public class BoardEntity {
         this.viewCount = 0;
         this.commentCount = 0;
         this.likeCount = 0;
+    }
+
+    //@ 글 수정 할 때 제목과 내용 이미지만 수정, 내가 requestDto에서 요청으로 보낸 데이터를 다시 Entity(DB TABLE)에 저장
+    public void patch(PatchBoardRequestDto dto){
+        this.boardTitle = dto.getBoardTitle();
+        this.boardContent = dto.getBoardContent();
+        this.boardImgUrl = dto.getBoardImgUrl();
     }
 
     public void increaseViewCount(){
