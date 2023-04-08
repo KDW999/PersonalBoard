@@ -10,6 +10,7 @@ import com.example.kdw.board2.dto.response.ResponseDto;
 import com.example.kdw.board2.dto.response.board.DeleteBoardResponseDto;
 import com.example.kdw.board2.dto.response.board.GetBoardResponseDto;
 import com.example.kdw.board2.dto.response.board.GetListResponseDto;
+import com.example.kdw.board2.dto.response.board.GetMyListResponseDto;
 import com.example.kdw.board2.dto.response.board.LikeResponseDto;
 import com.example.kdw.board2.dto.response.board.PatchBoardResponseDto;
 import com.example.kdw.board2.dto.response.board.PostBoardResponseDto;
@@ -24,4 +25,5 @@ public interface BoardService {
     public ResponseDto<PatchBoardResponseDto> patchBoard(String email, PatchBoardRequestDto dto);
     public ResponseDto<DeleteBoardResponseDto> deleteBoard(String email, int boardNumber);
     public ResponseDto<List<GetListResponseDto>> getList();
+    public ResponseDto<List<GetMyListResponseDto>> getMyList(String email);
 }

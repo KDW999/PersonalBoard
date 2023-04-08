@@ -25,6 +25,7 @@ import com.example.kdw.board2.dto.response.ResponseDto;
 import com.example.kdw.board2.dto.response.board.DeleteBoardResponseDto;
 import com.example.kdw.board2.dto.response.board.GetBoardResponseDto;
 import com.example.kdw.board2.dto.response.board.GetListResponseDto;
+import com.example.kdw.board2.dto.response.board.GetMyListResponseDto;
 import com.example.kdw.board2.dto.response.board.LikeResponseDto;
 import com.example.kdw.board2.dto.response.board.PatchBoardResponseDto;
 import com.example.kdw.board2.dto.response.board.PostBoardResponseDto;
@@ -42,7 +43,7 @@ public class BoardController {
     //? 게시글 수정 O
     //? 게시글 삭제 O
     //? 전체 게시글 목록 O
-    //? 내 게시글 목록
+    //? 내 게시글 목록 O
     //? 검색어 게시글 리스트
     //? 좋아요 TOP3 게시글
     //? 검색 TOP15 게시글
@@ -110,6 +111,13 @@ public class BoardController {
     @GetMapping(GET_LIST)
     public ResponseDto<List<GetListResponseDto>> getList(){
         ResponseDto<List<GetListResponseDto>> response = boardService.getList();
+        return response;
+    }
+
+    //? 내 게시글 목록
+    @GetMapping(GET_MY_LIST)
+    public ResponseDto<List<GetMyListResponseDto>> getMyList(@AuthenticationPrincipal String email){
+        ResponseDto<List<GetMyListResponseDto>> response = boardService.getMyList(email);
         return response;
 
     }

@@ -15,6 +15,7 @@ import com.example.kdw.board2.dto.response.ResponseDto;
 import com.example.kdw.board2.dto.response.board.DeleteBoardResponseDto;
 import com.example.kdw.board2.dto.response.board.GetBoardResponseDto;
 import com.example.kdw.board2.dto.response.board.GetListResponseDto;
+import com.example.kdw.board2.dto.response.board.GetMyListResponseDto;
 import com.example.kdw.board2.dto.response.board.LikeResponseDto;
 import com.example.kdw.board2.dto.response.board.PatchBoardResponseDto;
 import com.example.kdw.board2.dto.response.board.PostBoardResponseDto;
@@ -245,5 +246,24 @@ public class BoardServiceImplements implements BoardService{
         }
 
         return ResponseDto.setSuccess(ResponseMessage.SUCCESS, data);
+    }
+
+    //? 내 글 목록 보기
+    public ResponseDto<List<GetMyListResponseDto>> getMyList(String email){
+
+        List<GetMyListResponseDto> data = null;
+
+        try {
+
+            List<BoardEntity> boardEntityList = boardRepository.findByWriterEmailOrderByBoardWriteDatetimeDesc(email);
+            data = GetMyListResponseDto.copyList(boardEntityList);
+            
+        } catch (Exception exception) {
+            exception.printStackTrace();;
+            return ResponseDto.setFailed(ResponseMessage.DATABASE_ERROR);
+        }
+
+        return ResponseDto.setSuccess(ResponseMessage.SUCCESS, data);
+
     }
 }
