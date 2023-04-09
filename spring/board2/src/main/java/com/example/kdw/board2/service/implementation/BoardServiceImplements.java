@@ -16,6 +16,7 @@ import com.example.kdw.board2.dto.response.board.DeleteBoardResponseDto;
 import com.example.kdw.board2.dto.response.board.GetBoardResponseDto;
 import com.example.kdw.board2.dto.response.board.GetListResponseDto;
 import com.example.kdw.board2.dto.response.board.GetMyListResponseDto;
+import com.example.kdw.board2.dto.response.board.GetSearchListResponseDto;
 import com.example.kdw.board2.dto.response.board.LikeResponseDto;
 import com.example.kdw.board2.dto.response.board.PatchBoardResponseDto;
 import com.example.kdw.board2.dto.response.board.PostBoardResponseDto;
@@ -23,10 +24,12 @@ import com.example.kdw.board2.dto.response.board.PostCommentResponseDto;
 import com.example.kdw.board2.entity.BoardEntity;
 import com.example.kdw.board2.entity.CommentEntity;
 import com.example.kdw.board2.entity.LikyEntity;
+import com.example.kdw.board2.entity.SearchWordLogEntity;
 import com.example.kdw.board2.entity.UserEntity;
 import com.example.kdw.board2.repository.BoardRepository;
 import com.example.kdw.board2.repository.CommentRepository;
 import com.example.kdw.board2.repository.LikyRepository;
+import com.example.kdw.board2.repository.SearchWordLogRepository;
 import com.example.kdw.board2.repository.UserRepository;
 import com.example.kdw.board2.service.BoardService;
 
@@ -37,6 +40,7 @@ public class BoardServiceImplements implements BoardService{
     @Autowired BoardRepository boardRepository;
     @Autowired CommentRepository commentRepository;
     @Autowired LikyRepository likyRepository;
+    @Autowired SearchWordLogRepository searchWordLogRepository;
 
     //? 게시물 작성
     public ResponseDto<PostBoardResponseDto> postBoard(String email, PostBoardRequestDto dto){
@@ -262,8 +266,29 @@ public class BoardServiceImplements implements BoardService{
             exception.printStackTrace();;
             return ResponseDto.setFailed(ResponseMessage.DATABASE_ERROR);
         }
-
         return ResponseDto.setSuccess(ResponseMessage.SUCCESS, data);
+    }
 
+    //? 검색어 리스트 조회
+    public ResponseDto<List<GetSearchListResponseDto>> getSearchList(String searchWord, String previousSearchWord){
+
+        List<GetSearchListResponseDto> data = null;
+
+        try {
+
+            SearchWordLogEntity searchWordLogEntity = new SearchWordLogEntity(searchWord);
+            searchWordLogRepository.save(searchWordLogEntity);
+
+            //? 이전 검색어에 값이 있고, 비어있지 않다면 
+            if(previousSearchWord != null && !previousSearchWord.isBlank()){
+                RelatedSearch
+            }
+
+            
+        } catch (Exception exception) {
+            exception.printStackTrace();
+            return ResponseDto.setFailed(ResponseMessage.DATABASE_ERROR);
+        }
+        return ResponseDto.setSuccess(ResponseMessage.SUCCESS, data);
     }
 }

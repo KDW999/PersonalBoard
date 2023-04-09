@@ -26,6 +26,7 @@ import com.example.kdw.board2.dto.response.board.DeleteBoardResponseDto;
 import com.example.kdw.board2.dto.response.board.GetBoardResponseDto;
 import com.example.kdw.board2.dto.response.board.GetListResponseDto;
 import com.example.kdw.board2.dto.response.board.GetMyListResponseDto;
+import com.example.kdw.board2.dto.response.board.GetSearchListResponseDto;
 import com.example.kdw.board2.dto.response.board.LikeResponseDto;
 import com.example.kdw.board2.dto.response.board.PatchBoardResponseDto;
 import com.example.kdw.board2.dto.response.board.PostBoardResponseDto;
@@ -59,6 +60,9 @@ public class BoardController {
     private final String DELETE_BOARD = "/{boardNumber}";
     private final String GET_LIST = "/list";
     private final String GET_MY_LIST = "/my-list";
+    private final String GET_SEARCH_LIST = "/search-list/{searchWord}";
+    private final String GET_SEARCH_LIST_PREVIOUS = "/search-list/{searchWord}/{previousSearchWord}";
+
     
     //? 게시글 작성
     @PostMapping(POST_BOARD)
@@ -119,8 +123,15 @@ public class BoardController {
     public ResponseDto<List<GetMyListResponseDto>> getMyList(@AuthenticationPrincipal String email){
         ResponseDto<List<GetMyListResponseDto>> response = boardService.getMyList(email);
         return response;
-
     }
 
-    
+    //? 검색어 게시글 리스트
+    @GetMapping(value = {GET_SEARCH_LIST_PREVIOUS, GET_SEARCH_LIST})
+    public ResponseDto<List<GetSearchListResponseDto>> getSearchList(
+        @PathVariable(name = "searchWord", required = false) String searchWord,
+        @PathVariable(name = "previousSearchWord", required = false) String previousSearchWord){
+            ResponseDto<List<GetSearchListResponseDto>> response = boardService.getSearchList(searchWord, previousSearchWord);
+                return response;
+            
+    }   
 }
