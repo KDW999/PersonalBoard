@@ -1,5 +1,6 @@
 package com.example.kdw.board2.entity;
 
+import javax.annotation.Generated;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -13,16 +14,19 @@ import lombok.NoArgsConstructor;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-@Entity(name = "Searchwordlog")
-@Table(name = "Searchwordlog")
-public class SearchWordLogEntity {
+@Entity(name = "Relatedsearchword")
+@Table(name = "Relatedsearchword")
+public class RelatedSearchWordEntity {
     
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int sequence;
     private String searchWord;
+    private String previousSearchWord;
 
-    public SearchWordLogEntity(String searchWord){
+    public RelatedSearchWordEntity(String searchWord, String previousSearchWord){
         this.searchWord = searchWord;
+        this.previousSearchWord = previousSearchWord;
     }
+
 }

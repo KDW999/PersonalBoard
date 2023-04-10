@@ -12,7 +12,7 @@ import lombok.NoArgsConstructor;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class GetSearchListResponseDto {
+public class GetLikeTop3ListResponseDto {
     
     private int boardNumber;
     private String boardTitle;
@@ -21,11 +21,11 @@ public class GetSearchListResponseDto {
     private String boardWriteDatetime;
     private String writerNickname;
     private String writerProfileUrl;
-    private int viewcount;
+    private int viewCount;
     private int commentCount;
     private int likeCount;
 
-    public GetSearchListResponseDto(BoardEntity boardEntity){
+    public GetLikeTop3ListResponseDto(BoardEntity boardEntity){
         this.boardNumber = boardEntity.getBoardNumber();
         this.boardTitle = boardEntity.getBoardTitle();
         this.boardContent = boardEntity.getBoardContent();
@@ -33,21 +33,19 @@ public class GetSearchListResponseDto {
         this.boardWriteDatetime = boardEntity.getBoardWriteDatetime();
         this.writerNickname = boardEntity.getWriterNickname();
         this.writerProfileUrl = boardEntity.getWriterProfileUrl();
-        this.viewcount = boardEntity.getViewCount();
-        this.commentCount =  boardEntity.getCommentCount();
+        this.viewCount = boardEntity.getViewCount();
+        this.commentCount = boardEntity.getCommentCount();
         this.likeCount = boardEntity.getLikeCount();
     }
 
-    //? 리스트 형태로 저장된 데이터 가져와서 리스트 형태로 클라이언트에게 보여주기
-    public static List<GetSearchListResponseDto> copyList(List<BoardEntity> boardEntityList){
-        
-        List<GetSearchListResponseDto> list = new ArrayList<>();
+    public static List<GetLikeTop3ListResponseDto> copyList(List<BoardEntity> boardEntityList){
+
+        List<GetLikeTop3ListResponseDto> list = new ArrayList<>();
 
         for(BoardEntity boardEntity : boardEntityList){
-            GetSearchListResponseDto dto = new GetSearchListResponseDto(boardEntity);
+            GetLikeTop3ListResponseDto dto = new GetLikeTop3ListResponseDto(boardEntity);
             list.add(dto);
         }
-
         return list;
     }
 }

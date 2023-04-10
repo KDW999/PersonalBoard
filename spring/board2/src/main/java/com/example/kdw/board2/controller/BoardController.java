@@ -24,9 +24,12 @@ import com.example.kdw.board2.dto.request.board.PostCommentRequestDto;
 import com.example.kdw.board2.dto.response.ResponseDto;
 import com.example.kdw.board2.dto.response.board.DeleteBoardResponseDto;
 import com.example.kdw.board2.dto.response.board.GetBoardResponseDto;
+import com.example.kdw.board2.dto.response.board.GetLikeTop3ListResponseDto;
 import com.example.kdw.board2.dto.response.board.GetListResponseDto;
 import com.example.kdw.board2.dto.response.board.GetMyListResponseDto;
 import com.example.kdw.board2.dto.response.board.GetSearchListResponseDto;
+import com.example.kdw.board2.dto.response.board.GetTop15RelatedSearchWordResponseDto;
+import com.example.kdw.board2.dto.response.board.GetTop15SearchWordResponseDto;
 import com.example.kdw.board2.dto.response.board.LikeResponseDto;
 import com.example.kdw.board2.dto.response.board.PatchBoardResponseDto;
 import com.example.kdw.board2.dto.response.board.PostBoardResponseDto;
@@ -45,10 +48,10 @@ public class BoardController {
     //? 게시글 삭제 O
     //? 전체 게시글 목록 O
     //? 내 게시글 목록 O
-    //? 검색어 게시글 리스트
-    //? 좋아요 TOP3 게시글
-    //? 검색 TOP15 게시글
-    //? 연관 검색어 리스트
+    //? 검색어 게시글 리스트 O
+    //? 좋아요 TOP3 게시글 O 
+    //? 검색 TOP15 게시글 O
+    //? 연관 검색어 리스트 
 
     @Autowired private BoardService boardService;
 
@@ -62,7 +65,9 @@ public class BoardController {
     private final String GET_MY_LIST = "/my-list";
     private final String GET_SEARCH_LIST = "/search-list/{searchWord}";
     private final String GET_SEARCH_LIST_PREVIOUS = "/search-list/{searchWord}/{previousSearchWord}";
-
+    private final String GET_LIKE_TOP3_LIST = "/like-top3-list";
+    private final String GET_TOP15_SEARCH_WORD = "/top15-search-word";
+    private final String GET_TOP15_RELATED_SEARCH_WORD = "/top15-related-search-word/{searchWord}";
     
     //? 게시글 작성
     @PostMapping(POST_BOARD)
@@ -125,7 +130,7 @@ public class BoardController {
         return response;
     }
 
-    //? 검색어 게시글 리스트
+    //? 검색어 / 이전 검색어 게시글 리스트
     @GetMapping(value = {GET_SEARCH_LIST_PREVIOUS, GET_SEARCH_LIST})
     public ResponseDto<List<GetSearchListResponseDto>> getSearchList(
         @PathVariable(name = "searchWord", required = false) String searchWord,
@@ -134,4 +139,27 @@ public class BoardController {
                 return response;
             
     }   
+
+    //? 주간 좋아요 TOP3
+    @GetMapping(GET_LIKE_TOP3_LIST)
+    public ResponseDto<List<GetLikeTop3ListResponseDto>> getLikeTop3List(){
+        ResponseDto<List<GetLikeTop3ListResponseDto>> response = boardService.getLikeTop3List();
+        return response;
+    }
+
+    //? 검색어 TOP15 조회
+    @GetMapping(GET_TOP15_SEARCH_WORD)
+    public ResponseDto<GetTop15SearchWordResponseDto> getTop15SearchWord(){
+        ResponseDto<GetTop15SearchWordResponseDto> response = boardService.getTop15SearchWord();
+        return response;
+    }
+
+    //? 검색어 연관 검색어 리스트
+    @GetMapping(GET_TOP15_RELATED_SEARCH_WORD)
+    public ResponseDto<GetTop15RelatedSearchWordResponseDto> getTop15RelatedSearchWord(
+        @PathVariable("searchWord") String searchWord){
+            
+        ResponseDto<GetTop15RelatedSearchWordResponseDto> response = boardService.getTop15RelatedSearchWord(searchWord);
+        return response;
+    }
 }

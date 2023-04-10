@@ -2,6 +2,8 @@ package com.example.kdw.board2.service;
 
 import java.util.List;
 
+import org.apache.catalina.connector.Response;
+
 import com.example.kdw.board2.dto.request.board.LikeReqeustDto;
 import com.example.kdw.board2.dto.request.board.PatchBoardRequestDto;
 import com.example.kdw.board2.dto.request.board.PostBoardRequestDto;
@@ -9,9 +11,11 @@ import com.example.kdw.board2.dto.request.board.PostCommentRequestDto;
 import com.example.kdw.board2.dto.response.ResponseDto;
 import com.example.kdw.board2.dto.response.board.DeleteBoardResponseDto;
 import com.example.kdw.board2.dto.response.board.GetBoardResponseDto;
+import com.example.kdw.board2.dto.response.board.GetLikeTop3ListResponseDto;
 import com.example.kdw.board2.dto.response.board.GetListResponseDto;
 import com.example.kdw.board2.dto.response.board.GetMyListResponseDto;
 import com.example.kdw.board2.dto.response.board.GetSearchListResponseDto;
+import com.example.kdw.board2.dto.response.board.GetTop15SearchWordResponseDto;
 import com.example.kdw.board2.dto.response.board.LikeResponseDto;
 import com.example.kdw.board2.dto.response.board.PatchBoardResponseDto;
 import com.example.kdw.board2.dto.response.board.PostBoardResponseDto;
@@ -28,4 +32,6 @@ public interface BoardService {
     public ResponseDto<List<GetListResponseDto>> getList();
     public ResponseDto<List<GetMyListResponseDto>> getMyList(String email);
     public ResponseDto<List<GetSearchListResponseDto>> getSearchList(String searchWord, String previousSearchWord);
+    public ResponseDto<List<GetLikeTop3ListResponseDto>> getLikeTop3List();
+    public ResponseDto<GetTop15SearchWordResponseDto> getTop15SearchWord();
 }
