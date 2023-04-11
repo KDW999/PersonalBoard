@@ -51,7 +51,7 @@ public class BoardController {
     //? 검색어 게시글 리스트 O
     //? 좋아요 TOP3 게시글 O 
     //? 검색 TOP15 게시글 O
-    //? 연관 검색어 리스트 
+    //? 연관 검색어 리스트 O
 
     @Autowired private BoardService boardService;
 
@@ -137,7 +137,6 @@ public class BoardController {
         @PathVariable(name = "previousSearchWord", required = false) String previousSearchWord){
             ResponseDto<List<GetSearchListResponseDto>> response = boardService.getSearchList(searchWord, previousSearchWord);
                 return response;
-            
     }   
 
     //? 주간 좋아요 TOP3
@@ -158,7 +157,6 @@ public class BoardController {
     @GetMapping(GET_TOP15_RELATED_SEARCH_WORD)
     public ResponseDto<GetTop15RelatedSearchWordResponseDto> getTop15RelatedSearchWord(
         @PathVariable("searchWord") String searchWord){
-            
         ResponseDto<GetTop15RelatedSearchWordResponseDto> response = boardService.getTop15RelatedSearchWord(searchWord);
         return response;
     }

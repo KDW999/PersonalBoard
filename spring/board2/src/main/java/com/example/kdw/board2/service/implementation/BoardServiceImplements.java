@@ -22,6 +22,7 @@ import com.example.kdw.board2.dto.response.board.GetLikeTop3ListResponseDto;
 import com.example.kdw.board2.dto.response.board.GetListResponseDto;
 import com.example.kdw.board2.dto.response.board.GetMyListResponseDto;
 import com.example.kdw.board2.dto.response.board.GetSearchListResponseDto;
+import com.example.kdw.board2.dto.response.board.GetTop15RelatedSearchWordResponseDto;
 import com.example.kdw.board2.dto.response.board.GetTop15SearchWordResponseDto;
 import com.example.kdw.board2.dto.response.board.LikeResponseDto;
 import com.example.kdw.board2.dto.response.board.PatchBoardResponseDto;
@@ -33,6 +34,7 @@ import com.example.kdw.board2.entity.LikyEntity;
 import com.example.kdw.board2.entity.RelatedSearchWordEntity;
 import com.example.kdw.board2.entity.SearchWordLogEntity;
 import com.example.kdw.board2.entity.UserEntity;
+import com.example.kdw.board2.entity.resultSet.RelatedSearchWordResultSet;
 import com.example.kdw.board2.entity.resultSet.SearchWordResultSet;
 import com.example.kdw.board2.repository.BoardRepository;
 import com.example.kdw.board2.repository.CommentRepository;
@@ -344,6 +346,24 @@ public class BoardServiceImplements implements BoardService{
             return ResponseDto.setFailed(ResponseMessage.DATABASE_ERROR);
         }
 
+        return ResponseDto.setSuccess(ResponseMessage.SUCCESS, data);
+    }
+
+    //? 검색어 연관 검색어 리스트
+    public ResponseDto<GetTop15RelatedSearchWordResponseDto> getTop15RelatedSearchWord(String searchWord){
+
+        GetTop15RelatedSearchWordResponseDto data = null;
+
+        try {
+
+            List<RelatedSearchWordResultSet> relatedSearchWordList = relatedSearchWordRepository.findTop15(searchWord);
+            data = GetTop15RelatedSearchWordResponseDto.copyList(relatedSearchWordList);
+            
+        } catch (Exception exception) {
+            exception.printStackTrace();
+            return ResponseDto.setFailed(ResponseMessage.DATABASE_ERROR);
+        }
+        
         return ResponseDto.setSuccess(ResponseMessage.SUCCESS, data);
     }
 }

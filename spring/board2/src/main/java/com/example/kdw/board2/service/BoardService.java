@@ -15,6 +15,7 @@ import com.example.kdw.board2.dto.response.board.GetLikeTop3ListResponseDto;
 import com.example.kdw.board2.dto.response.board.GetListResponseDto;
 import com.example.kdw.board2.dto.response.board.GetMyListResponseDto;
 import com.example.kdw.board2.dto.response.board.GetSearchListResponseDto;
+import com.example.kdw.board2.dto.response.board.GetTop15RelatedSearchWordResponseDto;
 import com.example.kdw.board2.dto.response.board.GetTop15SearchWordResponseDto;
 import com.example.kdw.board2.dto.response.board.LikeResponseDto;
 import com.example.kdw.board2.dto.response.board.PatchBoardResponseDto;
@@ -34,4 +35,5 @@ public interface BoardService {
     public ResponseDto<List<GetSearchListResponseDto>> getSearchList(String searchWord, String previousSearchWord);
     public ResponseDto<List<GetLikeTop3ListResponseDto>> getLikeTop3List();
     public ResponseDto<GetTop15SearchWordResponseDto> getTop15SearchWord();
+    public ResponseDto<GetTop15RelatedSearchWordResponseDto> getTop15RelatedSearchWord(String searchWord);
 }
