@@ -32,6 +32,7 @@ public class FileController {
         return response;
     }
 
+    //? 사진 이름이 sun.jpg면 url에 sun.jpg 그대로 적기
     //? 파일 다운로드
     @GetMapping(value = GET_FILE, produces = {MediaType.ALL_VALUE})
     public Resource getFile(@PathVariable("fileName") String fileName){
