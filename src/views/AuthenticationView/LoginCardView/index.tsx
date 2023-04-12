@@ -1,3 +1,8 @@
+import { USER } from 'src/mock';
+import React, {useState, Dispatch, SetStateAction, useRef} from 'react'
+import { useNavigate } from 'react-router-dom';
+import { useUserStore } from 'src/stores';
+
 import Box from '@mui/material/Box'
 import FormControl from '@mui/material/FormControl';
 import IconButton from '@mui/material/IconButton';
@@ -6,13 +11,10 @@ import InputAdornment from '@mui/material/InputAdornment';
 import InputLabel from '@mui/material/InputLabel';
 import TextField from '@mui/material/TextField';
 import Typography from '@mui/material/Typography';
-import React, {useState, Dispatch, SetStateAction} from 'react'
-import { useNavigate } from 'react-router-dom';
-import { USER } from 'src/mock';
-import { useUserStore } from 'src/stores';
 import VisibilityOff from '@mui/icons-material/VisibilityOff'
 import Visibility from '@mui/icons-material/Visibility'
 import { Button } from '@mui/material';
+import { useCookies } from 'react-cookie';
 
 interface Props{
   setLoginView : Dispatch<SetStateAction<boolean>>
@@ -20,12 +22,18 @@ interface Props{
 
 export default function LoginCardView({setLoginView} : Props) {
 
+  //          Hook          //
+  const navigator = useNavigate();
+  const passwordRef = useRef<HTMLInputElement | null>(null);
+  
+  const { setUser } = useUserStore();
+
+  const [cookis, setCookie] = useCookies();
   const [email, setEmail] = useState<string>('');
   const [password, setPassword] = useState<string>('');
   const [showPassword, setShowPassword] = useState<boolean>(false);
-  const { setUser } = useUserStore();
+  const [loginError, setLoginError] = useState<boolean>(false);
 
-  const navigator = useNavigate();
 
   const onLoginHandler = () => {
     //? email / password 입력했는지 검사
