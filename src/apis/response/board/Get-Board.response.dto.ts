@@ -1,4 +1,4 @@
-interface ResponseDto{
+interface Dto{
 
     //? boardEntity 
     board : {
@@ -38,4 +38,4 @@ interface ResponseDto{
     ];
 }
 
-export default ResponseDto;
+export default Dto;

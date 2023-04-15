@@ -1,6 +1,6 @@
-import LikeDto from './Like.request.dto'
-import PatchBoardDto from './Patch-Board.request.dto'
-import PostBoardDto from './Post-Board.request.dto'
-import PostCommentDto from './Post-Comment-request.dto'
+import LikeRequestDto from './Like.request.dto'
+import PatchBoarRequestdDto from './Patch-Board.request.dto'
+import PostBoardDRequestto from './Post-Board.request.dto'
+import PostCommentRequestDto from './Post-Comment-request.dto'
 
-export type { LikeDto, PatchBoardDto, PostBoardDto, PostCommentDto }
+export type { LikeRequestDto, PatchBoarRequestdDto, PostBoardDRequestto, PostCommentRequestDto }

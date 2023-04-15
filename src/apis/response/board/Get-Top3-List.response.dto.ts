@@ -1,4 +1,4 @@
-interface ResponseDto{
+interface Dto{
     boardContent: string;
     boardImgUrl: string | null;
     boardNumber: number;
@@ -12,4 +12,4 @@ interface ResponseDto{
 
 }
 
-export default ResponseDto
+export default Dto;

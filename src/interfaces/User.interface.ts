@@ -1,9 +1,11 @@
-interface Dto{
+interface User{
+
     address : string;
     email : string;
     nickname : string;
     profile : string | null;
     telNumber : string;
+
 }
 
-export default Dto;
+export default User;

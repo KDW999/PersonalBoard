@@ -1,4 +1,4 @@
-interface ResponseDto{
+interface Dto{
 
     boardContent: string;
     boardImgUrl: string | null;
@@ -12,4 +12,4 @@ interface ResponseDto{
     writerProfileUrl: string | null;
 }
 
-export default ResponseDto;
+export default Dto;

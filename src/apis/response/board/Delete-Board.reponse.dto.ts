@@ -1,7 +1,7 @@
-interface ResponseDto{
+interface Dto{
 
     resultStatus : boolean;
     
 }
 
-export default ResponseDto;
+export default Dto;

@@ -21,7 +21,7 @@ export default function MyPageHead() {
     <Box sx = {{ p : '40px 120px', display : 'flex'}}>
         <Box>
             <IconButton>
-                <Avatar sx = {{ height : '120px', width : '120px'}} alt = {user?.nickname ? user.profile : ''}/>
+                <Avatar sx = {{ height : '120px', width : '120px'}} alt = {user?.nickname} src = {user?.profile ? user.profile: ''}/>
             </IconButton>
         </Box>
 
