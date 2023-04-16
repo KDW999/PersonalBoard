@@ -4,7 +4,7 @@ import GetListResponseDto from './Get-List.response.dto';
 import GetMyListResponseDto from './Get-My-List.response.dto';
 import GetSearchListResponseDto from './Get-Search-List.reponse.dto';
 import GetTop3ListResponseDto from './Get-Top3-List.response.dto';
-import GetTop15RelatedSearchResponseDto from './Get-Top15-Related-Search-Word.Response.dto';
+import GetTop15RelatedSearchWordResponseDto from './Get-Top15-Related-Search-Word.Response.dto';
 import GetTop15SearchWordResponseDto from './Get-Top15-Search-Word.reponse.dto';
 import LikeResponseDto from './Like.response.dto'
 import PatchBoardResponseDto from './Patch-Board.response.dto';
@@ -18,7 +18,7 @@ export type {
     GetMyListResponseDto,
     GetSearchListResponseDto,
     GetTop3ListResponseDto,
-    GetTop15RelatedSearchResponseDto,
+    GetTop15RelatedSearchWordResponseDto,
     GetTop15SearchWordResponseDto,
     LikeResponseDto,
     PatchBoardResponseDto,

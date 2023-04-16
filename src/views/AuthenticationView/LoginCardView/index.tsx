@@ -1,8 +1,8 @@
-import { USER } from 'src/mock';
-import React, {useState, Dispatch, SetStateAction, useRef, KeyboardEvent} from 'react'
+import {useState, Dispatch, SetStateAction, useRef, KeyboardEvent} from 'react'
 import { useNavigate } from 'react-router-dom';
 import { useUserStore } from 'src/stores';
 
+import axios, { AxiosResponse } from 'axios';
 import Box from '@mui/material/Box'
 import FormControl from '@mui/material/FormControl';
 import IconButton from '@mui/material/IconButton';
@@ -14,10 +14,10 @@ import Typography from '@mui/material/Typography';
 import VisibilityOff from '@mui/icons-material/VisibilityOff'
 import Visibility from '@mui/icons-material/Visibility'
 import { Button } from '@mui/material';
+
 import { useCookies } from 'react-cookie';
 import { SignInRequestDto } from 'src/apis/request/auth';
 import { SIGN_IN_URL } from 'src/constants/api';
-import axios, { AxiosResponse } from 'axios';
 import { SignInResponseDto } from 'src/apis/response/auth';
 import ResponseDto from 'src/apis/response';
 import { getExpires } from 'src/utils';
@@ -84,21 +84,21 @@ export default function LoginCardView({setLoginView} : Props) {
     .catch((error) => SignInErrorHandler(error));
     
   };
-
+  
   //          Response Handler          //
   const SignInResponseHandler = (response : AxiosResponse<any, any>) => {
     const { result, message, data } = response.data as ResponseDto<SignInResponseDto>;
     //? result : 작업 결과 상태 true, false
     //? message : 작업 결과에 따른 보여줄 message
     //? data : 작업 결과에 따른 보여줄 data, false시엔 없음
-
+    
+    alert('이건 뜨나?')
     if(!result || !data){ //? 작업 결과 상태나 데이터가 없다면
       setLoginError(true);
       alert('로그인 정보가 잘못되었습니다.');
       return;
     }
 
-    alert('이건 뜨나?')
     const { token, expiredTime, ...user } = data; //? 토큰과 만료 시간 및 나머지 유저 데이터에 로그인 시 data 저장 
     //? 로그인 처리
     //? 쿠키에 로그인 데이터 (Token) 보관 

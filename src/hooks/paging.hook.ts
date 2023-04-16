@@ -1,9 +1,10 @@
-import { ICommentItem, IPreviewItem } from "src/interfaces";
+import { Comment, ICommentItem, IPreviewItem } from "src/interfaces";
 import { useEffect, useState } from 'react';
+import { GetListResponseDto, GetMyListResponseDto, GetSearchListResponseDto } from "src/apis/response/board";
 
 const usePagingHook = (COUNT : number) => {
-    const [boardList, setBoardList] = useState<(IPreviewItem | ICommentItem)[]>([]);
-    const [viewList, setViewList] = useState<(IPreviewItem | ICommentItem)[]>([]);
+    const [boardList, setBoardList] = useState<(GetListResponseDto | GetSearchListResponseDto | GetMyListResponseDto | Comment)[]>([]);
+    const [viewList, setViewList] = useState<(GetListResponseDto | GetSearchListResponseDto | GetMyListResponseDto | Comment)[]>([]);
     const [pageNumber, setPageNumber] = useState<number>(1);
 
     //? 한 페이지에 게시물을 5개만 보여주고 싶을 때
@@ -12,7 +13,7 @@ const usePagingHook = (COUNT : number) => {
 
     const onPageHandler = (page : number) => { //? 동작 후 작용하는 걸 방지하고 싶을 땐 변수 지정해서 사용?
        setPageNumber(page);
-       const tempList : (IPreviewItem | ICommentItem)[] = [];
+       const tempList : (GetListResponseDto | GetSearchListResponseDto | GetMyListResponseDto | Comment)[] = [];
        const startIndex = COUNT * (page-1);
        const endIndex = COUNT * page -1;
 

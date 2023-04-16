@@ -5,11 +5,12 @@ import { useNavigate } from 'react-router-dom';
 
 interface Props {
     title : string
+    popularList : string[];
 }
 
-export default function PopularCard({title} : Props) {
+export default function PopularCard({title, popularList } : Props) {
 
-  const [popularList, setPopularList] = useState<string[]>([]);
+  // const [popularList, setPopularList] = useState<string[]>([]);
   const navigator = useNavigate();
 
   useEffect( () => {

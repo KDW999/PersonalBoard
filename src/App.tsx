@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import logo from './logo.svg';
 import './App.css';
 import { useLocation } from 'react-router-dom';
@@ -13,6 +13,13 @@ import BoardUpdateView from './views/Board/BoardUpdateView';
 import SearchView from './views/SearchView';
 import Board from './views/Board';
 import Footer from './views/Footer';
+import { useCookies } from 'react-cookie';
+import { useUserStore } from './stores';
+import axios, { AxiosResponse } from 'axios';
+import { GET_USER_URL, authorizationHeader } from './constants/api';
+import { access } from 'fs';
+import ResponseDto from './apis/response';
+import { GetUserResponseDto } from './apis/response/user';
 
 //# Router 통신 설계
 //? 1. main path : '/'
@@ -26,6 +33,40 @@ import Footer from './views/Footer';
 function App() {
 
   const path = useLocation();
+  const { setUser } = useUserStore();
+  const [ cookies ] = useCookies();
+  //? 쿠키가 남아있으면 로그인 유지시키기
+
+  //          Event Handler          //
+  const getUser = (accessToken : string) => {
+    axios.get(GET_USER_URL, authorizationHeader(accessToken)) //? header에 토큰 날리기
+    .then((response) => getUserResponseHandler(response))
+    .catch((error) => getUserErrorHandler(error));
+  }
+
+  //          Response Handler          //
+  const getUserResponseHandler = (response : AxiosResponse<any, any>) => {
+    const { result, message, data} = response.data as ResponseDto<any>;
+
+    if(!result || !data){
+      return;
+    }
+
+    const user = data as GetUserResponseDto;
+    setUser(user);
+  }
+
+  //          Error Handler          //
+  const getUserErrorHandler = (error : any) => {
+    console.log(error.message);
+  }
+
+  useEffect( () => {
+    const accessToken = cookies.accessToken;
+
+    if(accessToken) getUser(accessToken);
+
+  }, [path])
 
   return (
     <> {/* //? 최상단 태그는 하나 */}

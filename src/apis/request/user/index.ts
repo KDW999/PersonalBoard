@@ -1,3 +1,6 @@
-import PatchBoarRequestdDto from "./Patch-Profile.request.dto";
+import PatchProfileRequestDto from "./Patch-Profile.request.dto";
+import validateEmailRequestDto from './Validate-Email.request.dto'
+import validateNicknameRequestDto from './Validate-Nickname.request.dto'
+import validateTelNumberRequestDto from './Validate-Tel-Number.reuqest.dto';
 
-export type { PatchBoarRequestdDto };
+export type { PatchProfileRequestDto, validateEmailRequestDto, validateNicknameRequestDto, validateTelNumberRequestDto };
