@@ -13,7 +13,7 @@ import TextField from '@mui/material/TextField';
 import Typography from '@mui/material/Typography';
 import VisibilityOff from '@mui/icons-material/VisibilityOff'
 import Visibility from '@mui/icons-material/Visibility'
-import { Button } from '@mui/material';
+import { Button, FormHelperText } from '@mui/material';
 
 import { useCookies } from 'react-cookie';
 import { SignInRequestDto } from 'src/apis/request/auth';
@@ -39,6 +39,7 @@ export default function LoginCardView({setLoginView} : Props) {
   const [password, setPassword] = useState<string>('');
   const [showPassword, setShowPassword] = useState<boolean>(false);
   const [loginError, setLoginError] = useState<boolean>(false);
+  const [ checkLoginPattern, setCheckLoginPattern] = useState<string>('');
 
   //          Event Handler          //
   //? Enter 누르기
@@ -119,8 +120,11 @@ export default function LoginCardView({setLoginView} : Props) {
     <Box display = 'flex' sx = {{height : '100%', flexDirection : 'column', justifyContent : 'space-between'}}>
       <Box>
         <Typography variant = 'h4' fontWeight= '900'>로그인</Typography>
+        <FormControl>
         <TextField error = {loginError} sx = {{ mt : '40px'}} fullWidth label = "이메일 주소" variant = "standard" onChange={(event)=> setEmail(event.target.value)}
         onKeyPress = {(event) => onEmailKeyPressHandler(event)}/>
+        { checkLoginPattern.length <= 5 ? (<FormHelperText sx = {{ color : 'red'}}>로그인 양식이 잘못되었습니다.</FormHelperText>): ''}
+        </FormControl>
 
         <FormControl error = {loginError} ref = {passwordRef} fullWidth variant = "standard" sx = {{ mt : '40px'}}>
           <InputLabel>비밀번호</InputLabel>
